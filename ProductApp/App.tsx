@@ -1,21 +1,13 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import Logo from "./src/assets/logo.svg"
-function App(): JSX.Element {
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import Head from './src/components/Molecule/Head';
+const App = () => {
   return (
     <View>
-      <Logo />
-      <Text>asdasd</Text>
+      <Head />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({});
 

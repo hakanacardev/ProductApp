@@ -1,11 +1,24 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import Head from './src/components/Molecule/Head';
+import SideBar from './src/components/Molecule/SideBar';
+import SideBarElement from './src/components/Atoms/SideBarElement';
 const App = () => {
   return (
-    <View>
-      <Head />
-    </View>
+    <SafeAreaView style={{flex: 1}}>
+      <View>
+        <Head />
+      </View>
+      <View>
+        <SideBar />
+      </View>
+    </SafeAreaView>
   );
 };
 

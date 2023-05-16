@@ -10,6 +10,7 @@ import Head from './src/components/Molecule/Head';
 import SideBar from './src/components/Molecule/SideBar';
 import SideBarElement from './src/components/Atoms/SideBarElement';
 import ProductPromotionCard from './src/components/Molecule/ProductPromotionCard';
+import Nav from './src/components/Molecule/Nav';
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -44,7 +45,11 @@ const App = () => {
     logJSONData2();
   }, []);
 
-  return data.length > 0 && <ProductPromotionCard product={data[1]} />;
+  return (
+    <SafeAreaView style={{flex: 1}}>
+      <Nav />
+    </SafeAreaView>
+  );
 };
 
 const styles = StyleSheet.create({});

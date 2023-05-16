@@ -11,21 +11,11 @@ import SideBar from './src/components/Molecule/SideBar';
 import SideBarElement from './src/components/Atoms/SideBarElement';
 import ProductPromotionCard from './src/components/Molecule/ProductPromotionCard';
 import Nav from './src/components/Molecule/Nav';
+import PageContainer from './src/components/Templates/PageContainer';
 
 const App = () => {
   const [data, setData] = useState([]);
-  const regex = /(<([^>]+)>)/gi;
-  // const result = data.description.replace(regex, '');
-  async function logJSONData() {
-    const response = await fetch('https://api.extrazone.com/tags/list', {
-      method: 'get',
-      headers: {
-        'x-country-id': 'TR',
-        'x-language-id': 'TR',
-      },
-    });
-    const jsonData = await response.json();
-  }
+
   async function logJSONData2() {
     const response = await fetch(
       'https://api.extrazone.com/promotions/list?Channel=PWA',
@@ -41,14 +31,18 @@ const App = () => {
     setData(jsonData);
   }
   useEffect(() => {
-    logJSONData();
     logJSONData2();
   }, []);
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <PageContainer>
+      <Head />
+      <SideBar />
+      <View style={{width: '80%', alignSelf: 'center'}}>
+        <ProductPromotionCard product={data.length > 0 && data[1]} />
+      </View>
       <Nav />
-    </SafeAreaView>
+    </PageContainer>
   );
 };
 

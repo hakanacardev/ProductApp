@@ -4,6 +4,7 @@ import colors from '../../assets/colors';
 const LoginButton = () => {
   return (
     <TouchableOpacity
+      onPress={() => console.log('basıldı')}
       style={{
         paddingVertical: 10,
         paddingHorizontal: 20,

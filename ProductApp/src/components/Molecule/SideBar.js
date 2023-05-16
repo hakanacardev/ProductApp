@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -7,14 +7,25 @@ import {
   View,
   SafeAreaView,
 } from 'react-native';
-import LoginButton from '../Atoms/LoginButton';
-import Avatar from '../Atoms/Avatar';
-import Logo from '../../assets/logo.svg';
 import SideBarElement from '../Atoms/SideBarElement';
 import Search from '../../assets/search.svg';
-import AvatarSvg from '../../assets/avatar.svg';
 
 const SideBar = () => {
+  const [data, setData] = useState([]);
+  async function logJSONData() {
+    const response = await fetch('https://api.extrazone.com/tags/list', {
+      method: 'get',
+      headers: {
+        'x-country-id': 'TR',
+        'x-language-id': 'TR',
+      },
+    });
+    const jsonData = await response.json();
+    setData(jsonData);
+  }
+  useEffect(() => {
+    logJSONData();
+  }, []);
   return (
     <View style={{marginTop: 50}}>
       <ScrollView
@@ -23,12 +34,10 @@ const SideBar = () => {
         keyboardShouldPersistTaps="handled"
         style={styles.scrollView}
         contentContainerStyle={styles.contentContainerStyle}>
-        <SideBarElement logo={<Search />} title={'Fırsatı Bul'} />
-        <SideBarElement logo={<Search />} title={'Avatar'} />
-        <SideBarElement logo={<Search />} title={'Fırsatı Bul'} />
-        <SideBarElement logo={<Search />} title={'Avatar'} />
-        <SideBarElement logo={<Search />} title={'Fırsatı Bul'} />
-        <SideBarElement logo={<Search />} title={'Avatar'} />
+        {data.length > 0 &&
+          data.map(v => {
+            return <SideBarElement logo={v?.IconUrl} title={v?.Name} />;
+          })}
       </ScrollView>
     </View>
   );

@@ -7,7 +7,7 @@ import colors from '../../assets/colors';
 
 const ProductPromotionCard = props => {
   const regex = /(<([^>]+)>)/gi;
-  const result = props.product.Title.replace(regex, '');
+  const result = props?.product?.Title?.replace(regex, '');
   return (
     <View
       style={{
@@ -36,13 +36,13 @@ const ProductPromotionCard = props => {
               aspectRatio: 1,
               resizeMode: 'contain',
             }}
-            source={{uri: props.product.ImageUrl}}
+            source={{uri: props?.product?.ImageUrl}}
           />
           <Image
             style={[
               {
-                width: 120,
-                height: 120,
+                width: 100,
+                height: 100,
                 borderRadius: 100,
                 borderWidth: 10,
                 borderColor: colors.white,
@@ -50,7 +50,7 @@ const ProductPromotionCard = props => {
                 bottom: -32,
               },
             ]}
-            source={{uri: props.product.BrandIconUrl}}
+            source={{uri: props?.product?.BrandIconUrl}}
           />
           <Text
             style={{
@@ -62,11 +62,19 @@ const ProductPromotionCard = props => {
               borderRadius: 22,
               color: colors.white,
             }}>
-            {props.product.RemainingText}
+            {props?.product?.RemainingText}
           </Text>
         </View>
-        <View style={{marginTop: 30, paddingHorizontal: 20,alignItems:'center'}}>
-          <Text style={{fontSize: 20, fontWeight: 'bold',alignItems:'center'}}>{result}</Text>
+        <View
+          style={{marginTop: 30, paddingHorizontal: 20, alignItems: 'center'}}>
+          <Text style={{fontSize: 20, fontWeight: 'bold', textAlign: 'center'}}>
+            {result}
+          </Text>
+          <TouchableOpacity>
+            <Text style={{color: colors.red, fontWeight: 'bold',fontSize:20}}>
+              Daha Daha
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
       <View
@@ -74,7 +82,7 @@ const ProductPromotionCard = props => {
           {
             width: '100%',
             height: 50,
-            backgroundColor: props.product.PromotionCardColor,
+            backgroundColor: props?.product?.PromotionCardColor,
             borderRadius: 42,
             height: 100,
             zIndex: -1,

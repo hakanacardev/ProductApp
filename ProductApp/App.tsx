@@ -13,38 +13,23 @@ import ProductPromotionCard from './src/components/Molecule/ProductPromotionCard
 import Nav from './src/components/Molecule/Nav';
 import PageContainer from './src/components/Templates/PageContainer';
 import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import ProductPage from './src/pages/ProductPage';
+import ProductDetail from './src/pages/ProductDetail';
 
 const App = () => {
-  const [data, setData] = useState([]);
-
-  async function logJSONData2() {
-    const response = await fetch(
-      'https://api.extrazone.com/promotions/list?Channel=PWA',
-      {
-        method: 'get',
-        headers: {
-          'x-country-id': 'TR',
-          'x-language-id': 'TR',
-        },
-      },
-    );
-    const jsonData = await response.json();
-    setData(jsonData);
-  }
-  useEffect(() => {
-    logJSONData2();
-  }, []);
+  const Stack = createNativeStackNavigator();
 
   return (
     <NavigationContainer>
-      <PageContainer>
-        <Head />
-        <SideBar />
-        <View style={{width: '80%', alignSelf: 'center'}}>
-          <ProductPromotionCard product={data.length > 0 && data[1]} />
-        </View>
-        <Nav />
-      </PageContainer>
+      <Stack.Navigator
+        initialRouteName="ProductPage"
+        screenOptions={{
+          headerShown: false,
+        }}>
+        <Stack.Screen name="ProductPage" component={ProductPage} />
+        <Stack.Screen name="ProductDetail" component={ProductDetail} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };

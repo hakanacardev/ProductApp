@@ -72,7 +72,12 @@ const ProductPromotionCard = props => {
           <Text style={{fontSize: 20, fontWeight: 'bold', textAlign: 'center'}}>
             {result}
           </Text>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('ProductDetail', {
+                productId: props.product.Id,
+              })
+            }>
             <Text style={{color: colors.red, fontWeight: 'bold', fontSize: 20}}>
               Daha Daha
             </Text>

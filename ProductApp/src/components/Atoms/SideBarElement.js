@@ -14,6 +14,7 @@ const SideBarElement = props => {
         borderWidth: 1.5,
         borderRadius: 3,
         borderColor: colors.border,
+        backgroundColor: colors.white,
         marginRight: 5,
         borderRadius: 8,
       }}>

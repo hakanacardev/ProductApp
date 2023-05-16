@@ -4,10 +4,12 @@ import LoginButton from '../Atoms/LoginButton';
 import Avatar from '../Atoms/Avatar';
 import Logo from '../../assets/logo.svg';
 import colors from '../../assets/colors';
-
+import {useNavigation} from '@react-navigation/native';
 const ProductPromotionCard = props => {
   const regex = /(<([^>]+)>)/gi;
   const result = props?.product?.Title?.replace(regex, '');
+
+  const navigation = useNavigation();
   return (
     <View
       style={{
@@ -71,7 +73,7 @@ const ProductPromotionCard = props => {
             {result}
           </Text>
           <TouchableOpacity>
-            <Text style={{color: colors.red, fontWeight: 'bold',fontSize:20}}>
+            <Text style={{color: colors.red, fontWeight: 'bold', fontSize: 20}}>
               Daha Daha
             </Text>
           </TouchableOpacity>

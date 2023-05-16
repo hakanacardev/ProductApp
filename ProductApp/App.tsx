@@ -12,6 +12,7 @@ import SideBarElement from './src/components/Atoms/SideBarElement';
 import ProductPromotionCard from './src/components/Molecule/ProductPromotionCard';
 import Nav from './src/components/Molecule/Nav';
 import PageContainer from './src/components/Templates/PageContainer';
+import {NavigationContainer} from '@react-navigation/native';
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -35,14 +36,16 @@ const App = () => {
   }, []);
 
   return (
-    <PageContainer>
-      <Head />
-      <SideBar />
-      <View style={{width: '80%', alignSelf: 'center'}}>
-        <ProductPromotionCard product={data.length > 0 && data[1]} />
-      </View>
-      <Nav />
-    </PageContainer>
+    <NavigationContainer>
+      <PageContainer>
+        <Head />
+        <SideBar />
+        <View style={{width: '80%', alignSelf: 'center'}}>
+          <ProductPromotionCard product={data.length > 0 && data[1]} />
+        </View>
+        <Nav />
+      </PageContainer>
+    </NavigationContainer>
   );
 };
 
